@@ -1,0 +1,23 @@
+#!/usr/bin/env fish
+
+if [ (count $argv) -lt 1 ]
+    exit 1
+end
+
+switch $argv[1]
+    case pop
+        echo '"'(tail -n1 $HOME/tasks)'" is done'
+        sed '$ d' $HOME/tasks > /tmp/tasks
+        mv /tmp/tasks $HOME/tasks
+    case last
+        if [ -e $HOME/tasks ]
+            tail -n1 $HOME/tasks
+        end
+    case count
+        if [ -e $HOME/tasks ]
+            wc -l $HOME/tasks | cut -d " " -f1
+        end
+    case '*'
+        echo $argv >> $HOME/tasks
+end
+exit 0
