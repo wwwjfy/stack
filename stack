@@ -16,6 +16,8 @@ switch $argv[1]
     case "count"
         if [ -e $HOME/tasks ]
             wc -l $HOME/tasks | cut -d " " -f1
+        else
+            echo 0
         end
     case '*'
         echo $argv >> $HOME/tasks
