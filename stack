@@ -19,6 +19,9 @@ switch $argv[1]
         else
             echo 0
         end
+    case "--help"
+        echo "stack [pop|last|count]"
+        echo "stack (task description)"
     case '*'
         echo $argv >> $HOME/tasks
 end
